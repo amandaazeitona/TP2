@@ -29,6 +29,7 @@ class Falcon
 end
 
 class Hiero
+  attr_accessor :x,:y,:vel_x,:vel_y,:angle
 	def initialize
     @image = Gosu::Image.new("images/hiero.png")
     @x = @y = @vel_x = @vel_y = 0.0
@@ -41,5 +42,9 @@ class Hiero
 
   	def draw
       @image.draw_rot(@x, @y, TOP_LEVEL, @angle)
+    end
+
+    def move
+      @x -= 2
     end
 end

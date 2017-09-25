@@ -25,6 +25,11 @@ class GameWindow < Gosu::Window
         @player.move_down
       end
     end
+    if @hiero.x >= 20
+      @hiero.move
+    else
+      @hiero.warp(500, rand(500))
+    end
   end
 
   def draw
