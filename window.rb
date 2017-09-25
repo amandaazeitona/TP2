@@ -8,9 +8,10 @@ class GameWindow < Gosu::Window
   def initialize
     super WIDTH, HEIGHT
     self.caption = "Desert Falcon"
-    @background_image = Gosu::Image.new(self, "images/images.jpg", true)
     @player = Falcon.new
     @player.warp(130,300)
+    @hiero = Hiero.new
+    @hiero.warp(130,200)
   end
 
   def update
@@ -28,7 +29,7 @@ class GameWindow < Gosu::Window
 
   def draw
     @player.draw
-    @background_image.draw(150, 100, 50);
+    @hiero.draw
   end
 
   def button_down(id)

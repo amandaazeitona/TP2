@@ -26,5 +26,20 @@ class Falcon
       @x -= 2.975
       @y -= 4.375
     end
+end
 
+class Hiero
+	def initialize
+    @image = Gosu::Image.new("images/hiero.png")
+    @x = @y = @vel_x = @vel_y = 0.0
+    @angle = 3.0
+  	end
+
+  	def warp(x, y)
+      @x, @y = x, y
+    end
+
+  	def draw
+      @image.draw_rot(@x, @y, TOP_LEVEL, @angle)
+    end
 end
