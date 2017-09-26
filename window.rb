@@ -15,20 +15,20 @@ class GameWindow < Gosu::Window
   end
 
   def update
-    if Gosu.button_down? Gosu::KB_UP or Gosu::button_down? Gosu::GP_BUTTON_5
+    if Gosu.button_down? Gosu::KB_LEFT or Gosu::button_down? Gosu::GP_BUTTON_4
       if @player.x + 3 >= 20 # Um pouco maior que o tamanho da janela, se nao o falcao desaparece
         @player.move_up
       end
     end
-    if Gosu.button_down? Gosu::KB_DOWN or Gosu::button_down? Gosu::GP_BUTTON_0
+    if Gosu.button_down? Gosu::KB_RIGHT or Gosu::button_down? Gosu::GP_BUTTON_6
       if @player.y + 3 <= 500 # Um pouco maior que o tamanho da janela, se nao o falcao desaparece
         @player.move_down
       end
     end
-    if @hiero.x >= 20
+    if @hiero.x >= 20 && @hiero.y <= 510 # Detecta se o hiero chegou na extremidade esquerda ou no fim da janela
       @hiero.move
     else
-      @hiero.warp(500, rand(500))
+      @hiero.warp(500, (rand(480)))
     end
   end
 

@@ -46,5 +46,6 @@ class Hiero
 
     def move
       @x -= 2
+      @y += 0.7
     end
 end
