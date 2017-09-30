@@ -8,9 +8,9 @@ class GameWindow < Gosu::Window
   def initialize
     super WIDTH, HEIGHT
     self.caption = "Desert Falcon"
-    @player = Falcon.new
+    @player = Falcon.new("images/falcon.png")
     @player.warp(130,300)
-    @hiero = Hiero.new
+    @hiero = Hiero.new("images/hiero.png")
     @hiero.warp(130,200)
   end
 
@@ -20,15 +20,21 @@ class GameWindow < Gosu::Window
         @player.move_up
       end
     end
+
     if Gosu.button_down? Gosu::KB_RIGHT or Gosu::button_down? Gosu::GP_BUTTON_6
-      if @player.y + 3 <= 500 # Um pouco maior que o tamanho da janela, se nao o falcao desaparece
+      if @player.y + 3 <= WIDTH # Um pouco maior que o tamanho da janela, se nao o falcao desaparece
         @player.move_down
       end
     end
+
+    if @player.notity_colision(@hiero)
+      @hiero.warp(WIDTH, (rand(480)))
+    end
+
     if @hiero.x >= 20 && @hiero.y <= 510 # Detecta se o hiero chegou na extremidade esquerda ou no fim da janela
       @hiero.move
     else
-      @hiero.warp(500, (rand(480)))
+      @hiero.warp(WIDTH, (rand(480)))
     end
   end
 
