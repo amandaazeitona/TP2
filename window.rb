@@ -27,7 +27,7 @@ class GameWindow < Gosu::Window
       end
     end
 
-    if @player.notity_colision(@hiero)
+    if @player.notityCollision(@hiero)
       @hiero.warp(WIDTH, (rand(480)))
     end
 
