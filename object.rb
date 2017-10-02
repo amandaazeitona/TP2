@@ -2,39 +2,48 @@ require 'gosu'
 
 TOP_LEVEL = 1 # eixo Z do jogo
 
-class GameObject
+ 
 
-  attr_accessor :x,:y,:vel_x,:vel_y,:angle
-
-  public
+module Sprite
     def initialize (str)
       @image = Gosu::Image.new(str)
       @x = @y = @vel_x = @vel_y = 0.0
       @angle = 0.0
     end
+end
 
-    def warp(x, y)
-      @x, @y = x, y
-    end
+module Box 
+  def warp(x, y)
+    @x, @y = x, y
+  end
+end
+
+
+
+module GameObject 
+
+  attr_accessor :x,:y,:vel_x,:vel_y,:angle
+  public
+    
 
     def draw
       @image.draw_rot(@x, @y, TOP_LEVEL, @angle)
     end
 
     def notityCollision(obj)
-    if Gosu.distance(@x, @y, obj.x, obj.y) < 10
-      return true
+      if Gosu.distance(@x, @y, obj.x, obj.y) < 10
+        return true
+      end
     end
-  end
 end
 
-class Sprite
+class Box_Sprite_GameObject
+  include Sprite
+  include Box
+  include GameObject
 end
 
-class Box
-end
-
-class Falcon < GameObject
+class Falcon < Box_Sprite_GameObject
 
   def move_down
     @x += 2.975
@@ -46,7 +55,7 @@ class Falcon < GameObject
   end
 end
 
-class Hiero < GameObject
+class Hiero < Box_Sprite_GameObject
 
   def move
     @x -= 2

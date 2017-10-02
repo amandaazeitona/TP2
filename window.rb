@@ -8,6 +8,7 @@ class GameWindow < Gosu::Window
   def initialize
     super WIDTH, HEIGHT
     self.caption = "Desert Falcon"
+  
     @player = Falcon.new("images/falcon.png")
     @player.warp(130,300)
     @hiero = Hiero.new("images/hiero.png")
