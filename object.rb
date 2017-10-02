@@ -44,6 +44,7 @@ class Box_Sprite_GameObject
 end
 
 class Falcon < Box_Sprite_GameObject
+  attr_accessor :height
 
   def move_down
     @x += 2.975
@@ -52,6 +53,14 @@ class Falcon < Box_Sprite_GameObject
   def move_up
     @x -= 2.975
     @y -= 4.375
+  end
+  def move_height_down #Controle de altura do falcon os valores podem ser mudados
+    @height -= 1
+    @y += 21.875
+  end
+  def move_height_up
+    @height += 1
+    @y -= 21.875
   end
 end
 
