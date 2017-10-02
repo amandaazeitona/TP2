@@ -20,6 +20,18 @@ class GameObject
     def draw
       @image.draw_rot(@x, @y, TOP_LEVEL, @angle)
     end
+
+    def notityCollision(obj)
+    if Gosu.distance(@x, @y, obj.x, obj.y) < 10
+      return true
+    end
+  end
+end
+
+class Sprite
+end
+
+class Box
 end
 
 class Falcon < GameObject
@@ -32,11 +44,6 @@ class Falcon < GameObject
     @x -= 2.975
     @y -= 4.375
   end
-  def notityCollision (obj)
-    if Gosu.distance(@x, @y, obj.x, obj.y) < 10
-      return true
-    end
-  end
 end
 
 class Hiero < GameObject
@@ -45,11 +52,4 @@ class Hiero < GameObject
     @x -= 2
     @y += 0.7
   end
-
-  def notityCollision (obj)
-    if Gosu.distance(@x, @y, obj.x, obj.y) < 10
-      return true
-    end
-  end
-
 end
