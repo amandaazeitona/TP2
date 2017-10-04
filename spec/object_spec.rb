@@ -2,14 +2,16 @@ require 'spec_helper'
 
 
   describe Hiero do
-    before :all do
-      @hiero = Hiero.new
+   
+    it "return a new hiero" do
+      hiero = Hiero.new("spec/images/hiero.png")
+      expect(hiero).to be_a Hiero
+  
     end
-    #it "return a new hiero" do
-    #  @hiero.move be_an_intance_of Hiero
-    #end
 
-    it "return a correct move" do
-      @hiero.move.should eql 12  
+    it "initialize hiero move" do
+      hiero = Hiero.new("spec/images/hiero.png")
+      expect(hiero.x).to_not be >= 20 
+      expect(hiero.y).to be <= 510 
     end
   end
