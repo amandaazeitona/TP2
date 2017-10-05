@@ -6,7 +6,6 @@ require 'spec_helper'
     it "return a new hiero" do
       hiero = Hiero.new("spec/images/hiero.png")
       expect(hiero).to be_a Hiero
-  
     end
 
     
@@ -16,6 +15,15 @@ require 'spec_helper'
       expect(hiero.y).to eql(0.0)  
     end
 
+    it "move" do
+      hiero =  Hiero.new("spec/images/hiero.png")
+      eixo_x = hiero.x
+      eixo_y = hiero.y
+      hiero.move
+      expect(hiero.x).not_to eql (eixo_x)
+      expect(hiero.y).not_to eql (eixo_y)
+
+    end 
   end
 
   describe Falcon do
@@ -55,6 +63,22 @@ require 'spec_helper'
       falcon.move_height_up
       expect(falcon.height).not_to eql (eixo_height)
       expect(falcon.y).not_to eql (eixo_y)
+    end    
+    it "move height_up" do
+      falcon =  Falcon.new("spec/images/falcon.png")
+      eixo_height = falcon.height
+      eixo_y = falcon.y
+      falcon.move_height_up
+      expect(falcon.height).not_to eql (eixo_height)
+      expect(falcon.y).not_to eql (eixo_y)
+    end    
+    it "move height_down" do
+      falcon =  Falcon.new("spec/images/falcon.png")
+      eixo_height = falcon.height
+      eixo_y = falcon.y
+      falcon.move_height_down
+      expect(falcon.height).not_to eql (eixo_height)
+      expect(falcon.y).not_to eql (eixo_y)
     end
   end
 
@@ -64,17 +88,15 @@ require 'spec_helper'
       hiero = Hiero.new("spec/images/hiero.png") # valores iniciados iguais a zero
       expect(falcon.notityCollision(hiero)).to be true
     end  
-    #it "it not happened" do
-    #  falcon =  Falcon.new("spec/images/falcon.png") # valores inicados iguais a zero
-    #  hiero = Hiero.new("spec/images/hiero.png") # valores iniciados iguais a zero
-    #  falcon.move_up
+    it "it not happened" do
+      falcon =  Falcon.new("spec/images/falcon.png") # valores inicados iguais a zero
+      hiero = Hiero.new("spec/images/hiero.png") # valores iniciados iguais a zero
+      falcon.move_up  # Cada move_up equivale a  x -= 2.975 y -= 4.375  
+      falcon.move_up  # Mover o falcon para ficar com distancia > 10
+      falcon.move_up
+      expect(falcon.notityCollision(hiero)).to be false
+    end 
 
-
-     
-    
-
-    #  expect(falcon.notityCollision(hiero)).to be false
-    #end 
 
   end
 

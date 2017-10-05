@@ -1,4 +1,3 @@
-require 'gosu'
 
 TOP_LEVEL = 1 # eixo Z do jogo
 
@@ -33,6 +32,8 @@ module GameObject
     def notityCollision(obj)
       if Gosu.distance(@x, @y, obj.x, obj.y) < 10
         return true
+      else
+        return false  
       end
     end
 end

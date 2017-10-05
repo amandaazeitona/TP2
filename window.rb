@@ -23,7 +23,7 @@ class GameWindow < Gosu::Window
     end
 
     if Gosu.button_down? Gosu::KB_RIGHT or Gosu::button_down? Gosu::GP_BUTTON_6
-      if @player.y + 3 <= WIDTH # Um pouco maior que o tamanho da janela, se nao o falcao desaparece
+      if @player.y + 16 <= WIDTH # Um pouco maior que o tamanho da janela, se nao o falcao desaparece
         @player.move_down
       end
     end
@@ -32,7 +32,7 @@ class GameWindow < Gosu::Window
       if @player.y + 20 <= WIDTH and @player.height != -1 # Um pouco maior que o tamanho da janela, se nao o falcao desaparece
         @player.move_height_down
       end
-    end
+    end 
 
     if Gosu.button_down? Gosu::KB_UP
       if @player.height != 1
