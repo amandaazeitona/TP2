@@ -10,7 +10,6 @@ class GameWindow < Gosu::Window
     self.caption = "Desert Falcon"
 
     @player = Falcon.new("spec/images/falcon.png")
-    @player.height = 0
     @player.warp(130,300)
     @hiero = Hiero.new("spec/images/hiero.png")
     @hiero.warp(130,200)
@@ -42,13 +41,13 @@ class GameWindow < Gosu::Window
     end
 
     if @player.notityCollision(@hiero)
-      @hiero.warp(WIDTH, (rand(480)))
+      @hiero.warp(WIDTH, (rand(450)))
     end
 
     if @hiero.x >= 20 && @hiero.y <= 510 # Detecta se o hiero chegou na extremidade esquerda ou no fim da janela
       @hiero.move
     else
-      @hiero.warp(WIDTH, (rand(480)))
+      @hiero.warp(WIDTH, (rand(450)))
     end
   end
 

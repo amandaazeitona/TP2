@@ -7,7 +7,7 @@ TOP_LEVEL = 1 # eixo Z do jogo
 module Sprite
     def initialize (str)
       @image = Gosu::Image.new(str)
-      @x = @y = @vel_x = @vel_y = 0.0
+      @x = @y = @vel_x = @vel_y = @height= 0.0
       @angle = 0.0
     end
 end
