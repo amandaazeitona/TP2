@@ -2,6 +2,7 @@ require 'gosu'
 require_relative 'object'
 WIDTH = 512
 HEIGHT = 512
+BASE = 0
 
 class GameWindow < Gosu::Window
 
@@ -23,16 +24,16 @@ class GameWindow < Gosu::Window
     end
 
     if Gosu.button_down? Gosu::KB_RIGHT or Gosu::button_down? Gosu::GP_BUTTON_6
-      if @player.y + 16 <= WIDTH # Um pouco maior que o tamanho da janela, se nao o falcao desaparece
+      if @player.y + 16 <= height # Um pouco maior que o tamanho da janela, se nao o falcao desaparece
         @player.move_down
       end
     end
 
     if Gosu.button_down? Gosu::KB_DOWN
-      if @player.y + 20 <= WIDTH and @player.height != -1 # Um pouco maior que o tamanho da janela, se nao o falcao desaparece
+      if @player.y + 20 <= HEIGHT and @player.height != -1 # Um pouco maior que o tamanho da janela, se nao o falcao desaparece
         @player.move_height_down
       end
-    end 
+    end
 
     if Gosu.button_down? Gosu::KB_UP
       if @player.height != 1
@@ -41,13 +42,13 @@ class GameWindow < Gosu::Window
     end
 
     if @player.notityCollision(@hiero)
-      @hiero.warp(WIDTH, (rand(450)))
+      @hiero.warp(WIDTH, (rand(HEIGHT - 50)))
     end
 
-    if @hiero.x >= 20 && @hiero.y <= 510 # Detecta se o hiero chegou na extremidade esquerda ou no fim da janela
+    if @hiero.x >= BASE + 20 && @hiero.y <= HEIGHT + 15 # Detecta se o hiero chegou na extremidade esquerda ou no fim da janela
       @hiero.move
     else
-      @hiero.warp(WIDTH, (rand(450)))
+      @hiero.warp(WIDTH, (rand(HEIGHT - 50)))
     end
   end
 
