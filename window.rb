@@ -4,6 +4,7 @@ WIDTH = 512
 HEIGHT = 512
 BASE = 0
 
+
 class GameWindow < Gosu::Window
 
   def initialize
@@ -17,6 +18,7 @@ class GameWindow < Gosu::Window
   end
 
   def update
+
     if Gosu.button_down? Gosu::KB_LEFT or Gosu::button_down? Gosu::GP_BUTTON_4
       if @player.x + 3 >= 20 # Um pouco maior que o tamanho da janela, se nao o falcao desaparece
         @player.move_up
@@ -30,15 +32,22 @@ class GameWindow < Gosu::Window
     end
 
     if Gosu.button_down? Gosu::KB_DOWN
-      if @player.y + 20 <= HEIGHT and @player.height != -1 # Um pouco maior que o tamanho da janela, se nao o falcao desaparece
+      if @player.y + 25 <= HEIGHT and @player.height != -1 and @player.flag_down == true# Um pouco maior que o tamanho da janela, se nao o falcao desaparece
         @player.move_height_down
+        @player.flag_down = false
       end
+    else
+      @player.flag_down = true
     end
 
+
     if Gosu.button_down? Gosu::KB_UP
-      if @player.height != 1
+      if @player.height != 1 and @player.flag_up == true
         @player.move_height_up
+        @player.flag_up = false
       end
+    else
+      @player.flag_up = true
     end
 
     if @player.notityCollision(@hiero)

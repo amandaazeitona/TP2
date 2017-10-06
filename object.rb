@@ -45,7 +45,7 @@ class Box_Sprite_GameObject
 end
 
 class Falcon < Box_Sprite_GameObject
-  attr_accessor :height
+  attr_accessor :height, :flag_up, :flag_down #Flags para evitar mudança continua de altura
 
   def move_down
     @x += 2.975
