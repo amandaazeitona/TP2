@@ -10,6 +10,8 @@ class GameWindow < Gosu::Window
   def initialize
     super WIDTH, HEIGHT
     self.caption = "Desert Falcon"
+    @background_image = Gosu::Image.new("spec/images/fundo.png", :tileable => true)
+
 
     @player = Falcon.new("spec/images/falcon.png")
     @player.warp(130,300)
@@ -62,6 +64,7 @@ class GameWindow < Gosu::Window
   end
 
   def draw
+    @background_image.draw(0, 0, 0)
     @player.draw
     @hiero.draw
   end
