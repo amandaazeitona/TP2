@@ -47,13 +47,13 @@ class Falcon < Box_Sprite_GameObject
   attr_accessor :height, :flag_up, :flag_down #Flags para evitar mudança continua de altura
 
   def update
-    if Gosu.button_down? Gosu::KB_LEFT || Gosu::button_down? Gosu::GP_BUTTON_4
+    if (Gosu.button_down? Gosu::KB_LEFT) || (Gosu::button_down? Gosu::GP_BUTTON_4)
       if @x + 3 >= 20 # Um pouco maior que o tamanho da janela, se nao o falcao desaparece
         move_up
       end
     end
 
-    if Gosu.button_down? Gosu::KB_RIGHT || Gosu::button_down? Gosu::GP_BUTTON_6
+    if (Gosu.button_down? Gosu::KB_RIGHT) || (Gosu::button_down? Gosu::GP_BUTTON_6)
       if @y + 16 <= JANELA_HEIGHT # Um pouco maior que o tamanho da janela, se nao o falcao desaparece
         move_down
       end
