@@ -14,24 +14,29 @@ class GameWindow < Gosu::Window
     @player = Falcon.new('spec/images/falcon.png')
     @player.warp(130, 300)
     @player.score = 0
-    @hiero = Hiero.new('spec/images/hiero.png')
-    @hiero.warp(130, 200)
+    @hieros = Array.new
   end
 
   def update
     @player.update
-    @hiero.update
+    @hieros.each { |hiero| hiero.update}
 
-    if @player.notityCollision(@hiero)
-      @hiero.warp(WIDTH, rand(HEIGHT - 50))
-      @player.score += 10
+    if rand(100) < 4 && @hieros.size < 3
+      @hieros.push(Hiero.new('spec/images/hiero.png'))
     end
+
+    @hieros.each { |hiero|   
+      if @player.notityCollision(hiero)
+        hiero.warp(WIDTH, rand(HEIGHT - 50))
+        @player.score += 10
+      end
+    }
   end
 
   def draw
     @background_image.draw(0, 0, 0)
     @player.draw
-    @hiero.draw
+    @hieros.each { |hiero| hiero.draw }
     @font.draw("Score: #{@player.score}", 10, 10, 0, 1.0, 1.0, Gosu::Color::YELLOW)
   end
 
