@@ -44,7 +44,7 @@ class Box_Sprite_GameObject
 end
 
 class Falcon < Box_Sprite_GameObject
-  attr_accessor :height, :flag_up, :flag_down #Flags para evitar mudança continua de altura
+  attr_accessor :height, :flag_up, :flag_down, :score #Flags para evitar mudança continua de altura
 
   def update
     if (Gosu.button_down? Gosu::KB_LEFT) || (Gosu::button_down? Gosu::GP_BUTTON_4)
