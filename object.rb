@@ -114,3 +114,18 @@ class Hiero < Box_Sprite_GameObject
     @y += 0.7
   end
 end
+
+class Obstaculo < Box_Sprite_GameObject
+  def update
+    if @x >= BASE + 20 && @y <= JANELA_HEIGHT + 15 # Detecta se o hiero chegou na extremidade esquerda ou no fim da janela
+      move
+    else
+      warp(JANELA_WIDTH, rand(JANELA_HEIGHT - 50))
+    end
+  end
+
+  def move
+    @x -= 2
+    @y += 0.7
+  end
+end
