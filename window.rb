@@ -16,12 +16,14 @@ class GameWindow < Gosu::Window
     @player.score = 0
     @hieros = Array.new
     @obstaculos = Array.new
+    @inimigos = Array.new
   end
 
   def update
     @player.update
     @hieros.each { |hiero| hiero.update}
     @obstaculos.each { |obstaculo| obstaculo.update}
+    @inimigos.each { |inimigo| inimigo.update}
 
     if rand(100) < 4 && @obstaculos.size < 3
       @obstaculos.push(Obstaculo.new('spec/images/obs.png')) #Imagem temporaria 
@@ -31,8 +33,12 @@ class GameWindow < Gosu::Window
       @hieros.push(Hiero.new('spec/images/hiero.png'))
     end
 
-    @hieros.each { |hiero|   
-      if @player.notityCollision(hiero)
+    if rand(100) < 4 && @inimigos.size < 3
+      @inimigos.push(Inimigo.new('spec/images/inimigo.jpeg'))
+    end
+
+    @hieros.each { |hiero|   # Verificar
+      if @player.notityCollision(hiero) && (@player.height == hiero.height)
         hiero.warp(WIDTH, rand(HEIGHT - 50))
         @player.score += 10
       end
@@ -42,11 +48,18 @@ class GameWindow < Gosu::Window
         obstaculo.warp(WIDTH, rand(HEIGHT - 50))
       end
     }
+
+    @inimigos.each { |inimigo|   
+      if @player.notityCollision(inimigo) && (@player.height == inimigo.height)
+        inimigo.warp(WIDTH, rand(HEIGHT - 50))
+      end
+    }
   end
 
   def draw
     @background_image.draw(0, 0, 0)
     @obstaculos.each { |obstaculo| obstaculo.draw}
+    @inimigos.each { |inimigo| inimigo.draw}
     @player.draw
     @hieros.each { |hiero| hiero.draw }
     @font.draw("Score: #{@player.score}", 10, 10, 0, 1.0, 1.0, Gosu::Color::YELLOW)

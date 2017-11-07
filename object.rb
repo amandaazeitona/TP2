@@ -5,6 +5,8 @@ JANELA_WIDTH = 512
 JANELA_HEIGHT = 512
 
 module Sprite
+  attr_accessor 
+
   def initialize(str)
     @image = Gosu::Image.new(str)
     @x = @y = @vel_x = @vel_y = @height = 0.0
@@ -20,7 +22,7 @@ module Box
 end
 
 module GameObject
-  attr_accessor :x, :y, :vel_x, :vel_y, :angle
+  attr_accessor :x, :y, :vel_x, :vel_y, :angle, :height
 
   public
 
@@ -44,7 +46,7 @@ class Box_Sprite_GameObject
 end
 
 class Falcon < Box_Sprite_GameObject
-  attr_accessor :height, :flag_up, :flag_down, :score #Flags para evitar mudança continua de altura
+  attr_accessor :flag_up, :flag_down, :score #Flags para evitar mudança continua de altura
 
   def update
     if (Gosu.button_down? Gosu::KB_LEFT) || (Gosu::button_down? Gosu::GP_BUTTON_4)
@@ -113,6 +115,7 @@ class Hiero < Box_Sprite_GameObject
     @x -= 2
     @y += 0.7
   end
+
 end
 
 class Obstaculo < Box_Sprite_GameObject
@@ -127,5 +130,20 @@ class Obstaculo < Box_Sprite_GameObject
   def move
     @x -= 2
     @y += 0.7
+  end
+end
+
+class Inimigo < Box_Sprite_GameObject
+  def update
+    if @x >= BASE + 20 && @y <= JANELA_HEIGHT + 15 # Detecta se o inimigo chegou na extremidade esquerda ou no fim da janela
+      move
+    else
+      warp(JANELA_WIDTH, rand(JANELA_HEIGHT - 50))
+    end
+  end
+
+  def move
+    @x -= 3
+    @y += 1
   end
 end
