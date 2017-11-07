@@ -82,16 +82,16 @@ end
 
 describe GameObject do
   it 'it happened' do
-    falcon = Falcon.new('spec/images/falcon.png') # Valores inicados iguais a zero
-    hiero = Hiero.new('spec/images/hiero.png') # Valores iniciados iguais a zero
+    falcon = Falcon.new('spec/images/falcon.png') # Valores inicados iguais a zero.
+    hiero = Hiero.new('spec/images/hiero.png') # Valores iniciados iguais a zero.
     expect(falcon.notity_collision(hiero)).to be true
   end
 
   it 'it not happened' do
-    falcon = Falcon.new('spec/images/falcon.png') # Valores iniciados iguais a zero
-    hiero = Hiero.new('spec/images/hiero.png') # valores iniciados iguais a zero
-    falcon.move_up  # Cada move_up equivale a x -= 2.975 y -= 4.375
-    falcon.move_up  # Mover o falcon para ficar com distancia > 10
+    falcon = Falcon.new('spec/images/falcon.png') # Valores iniciados iguais a zero.
+    hiero = Hiero.new('spec/images/hiero.png') # valores iniciados iguais a zero.
+    falcon.move_up  # Cada move_up equivale a x -= 2.975 y -= 4.375.
+    falcon.move_up  # Mover o falcon para ficar com distancia > 10.
     falcon.move_up
     expect(falcon.notity_collision(hiero)).to be false
   end

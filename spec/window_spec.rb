@@ -1,6 +1,7 @@
 require 'spec_helper'
 require 'gosu'
 
+# Aplicando testes na janela do jogo.
 describe GameWindow do
   it 'return a new window' do
     window = GameWindow.new

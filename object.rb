@@ -23,19 +23,19 @@ end
 module GameObject
   attr_accessor :x, :y, :vel_x, :vel_y, :angle
 
-    # Desenha a imagem associada a si proprio.
-    def draw
-      @image.draw_rot(@x, @y, TOP_LEVEL, @angle)
-    end
+  # Desenha a imagem associada a si proprio.
+  def draw
+    @image.draw_rot(@x, @y, TOP_LEVEL, @angle)
+  end
 
-    # Detecta colisao.
-    def notity_collision (obj)
-      if Gosu.distance(@x, @y, obj.x, obj.y) < 10
-        true
-      else
-        false
-      end
+  # Detecta colisao.
+  def notity_collision(obj)
+    if Gosu.distance(@x, @y, obj.x, obj.y) < 10
+      true
+    else
+      false
     end
+  end
 end
 # Integra as tres classes Sprite, Box e GameObject.
 class BoxSpriteGameObject
