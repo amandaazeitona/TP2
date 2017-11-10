@@ -3,23 +3,78 @@ require_relative 'object'
 WIDTH = 512
 HEIGHT = 512
 BASE = 0
+MENU = 0
+JOGO = 1
+RANKING = 2
+PONTUACAO = 3
 
 class GameWindow < Gosu::Window
   def initialize
     super WIDTH, HEIGHT
-    self.caption = 'Desert Falcon'
-    @background_image = Gosu::Image.new('spec/images/fundo.png', :tileable => true)
-    @font = Gosu::Font.new(20)
 
+    self.caption = 'Desert Falcon'
+    @font = Gosu::Font.new(30)
+    @state = MENU
+    @inicializou = false
+    @background_image = Gosu::Image.new('spec/images/fundo.png', :tileable => true) # Os componentes do jogo sao inicializados aqui porque o metodo draw da janela eh chamado sempre no final do update oq causa erro na transiçao de modos da janela
     @player = Falcon.new('spec/images/falcon.png')
-    @player.warp(130, 300)
-    @player.score = 0
     @hieros = Array.new
     @obstaculos = Array.new
     @inimigos = Array.new
+
   end
 
   def update
+    case @state # Case para rodar a logica de acordo com o estado da janela
+    when MENU
+      roda_menu
+    when JOGO
+      roda_jogo
+    when PONTUACAO
+      roda_pontuacao
+    when RANKING
+      roda_ranking
+    end
+  end
+
+  def draw
+
+    case @state # Case para desenhar de acordo com o estado da janela
+    when MENU
+      @font.draw("JOGAR(j)", 200, 200, 0, 1.0, 1.0, Gosu::Color::YELLOW)
+      @font.draw("RANKING(r)", 200, 250, 0, 1.0, 1.0, Gosu::Color::YELLOW)
+      @font.draw("SAIR(esc)", 200, 300, 0, 1.0, 1.0, Gosu::Color::YELLOW)
+    when JOGO
+      @background_image.draw(0, 0, 0)
+      @obstaculos.each { |obstaculo| obstaculo.draw}
+      @inimigos.each { |inimigo| inimigo.draw}
+      @player.draw
+      @hieros.each { |hiero| hiero.draw }
+      @font.draw("Score: #{@player.score}", 10, 10, 0, 1.0, 1.0, Gosu::Color::YELLOW)
+    when PONTUACAO
+      @font.draw("Score Final: #{@player.score}", 200, 200, 0, 1.0, 1.0, Gosu::Color::YELLOW)
+    when RANKING
+      
+    end
+
+  end
+
+  def button_down(id)
+    if id == Gosu::KbEscape
+      close
+    end
+  end
+
+  def roda_jogo
+    if @inicializou == false
+      @player.warp(130, 300)
+      @player.score = 0
+      @hieros = Array.new
+      @obstaculos = Array.new
+      @inimigos = Array.new
+      @inicializou = true
+    end
+
     @player.update
     @hieros.each { |hiero| hiero.update}
     @obstaculos.each { |obstaculo| obstaculo.update}
@@ -46,31 +101,35 @@ class GameWindow < Gosu::Window
    @obstaculos.each { |obstaculo|   
       if @player.notityCollision(obstaculo) && @player.height == -1
         obstaculo.warp(WIDTH, rand(HEIGHT - 50))
+        @state = MENU
       end
     }
 
     @inimigos.each { |inimigo|   
       if @player.notityCollision(inimigo) && (@player.height == inimigo.height)
         inimigo.warp(WIDTH, rand(HEIGHT - 50))
+        @state = MENU
       end
     }
   end
 
-  def draw
-    @background_image.draw(0, 0, 0)
-    @obstaculos.each { |obstaculo| obstaculo.draw}
-    @inimigos.each { |inimigo| inimigo.draw}
-    @player.draw
-    @hieros.each { |hiero| hiero.draw }
-    @font.draw("Score: #{@player.score}", 10, 10, 0, 1.0, 1.0, Gosu::Color::YELLOW)
-  end
-
-  def button_down(id)
-    if id == Gosu::KbEscape
-      close
+  def roda_menu
+    if Gosu.button_down? Gosu::KB_J
+      @state = JOGO
+      @inicializou = false
     end
   end
+
+  def roda_pontuacao
+    
+  end
+
+  def roda_ranking
+    
+  end
 end
+
+
 
 window = GameWindow.new
 window.show
