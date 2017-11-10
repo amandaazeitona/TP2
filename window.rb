@@ -21,6 +21,8 @@ class GameWindow < Gosu::Window
     @hieros = Array.new
     @obstaculos = Array.new
     @inimigos = Array.new
+    
+ 
 
   end
 
@@ -52,7 +54,9 @@ class GameWindow < Gosu::Window
       @hieros.each { |hiero| hiero.draw }
       @font.draw("Score: #{@player.score}", 10, 10, 0, 1.0, 1.0, Gosu::Color::YELLOW)
     when PONTUACAO
-      @font.draw("Score Final: #{@player.score}", 200, 200, 0, 1.0, 1.0, Gosu::Color::YELLOW)
+      @font.draw("Score Final: #{@player.score}", 100, 200, 0, 1.0, 1.0, Gosu::Color::YELLOW)
+      @font.draw("Digite seu nome para o ranking", 100, 250, 0, 1.0, 1.0, Gosu::Color::YELLOW)
+      @font.draw("#{@text}", 100, 300, 0, 1.0, 1.0, Gosu::Color::YELLOW)
     when RANKING
       
     end
@@ -101,14 +105,16 @@ class GameWindow < Gosu::Window
    @obstaculos.each { |obstaculo|   
       if @player.notityCollision(obstaculo) && @player.height == -1
         obstaculo.warp(WIDTH, rand(HEIGHT - 50))
-        @state = MENU
+        @state = PONTUACAO
+        @inicializou = false
       end
     }
 
     @inimigos.each { |inimigo|   
       if @player.notityCollision(inimigo) && (@player.height == inimigo.height)
         inimigo.warp(WIDTH, rand(HEIGHT - 50))
-        @state = MENU
+        @state = PONTUACAO
+        @inicializou = false
       end
     }
   end
@@ -121,7 +127,11 @@ class GameWindow < Gosu::Window
   end
 
   def roda_pontuacao
-    
+    if @inicializou == false
+      self.text_input= Gosu::TextInput.new #Caixa de input é criada aqui por que ela trava os comandos se tiver ativa na hora do jogo
+      @inicializou = true
+    end
+    @text = text_input.text
   end
 
   def roda_ranking
