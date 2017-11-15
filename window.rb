@@ -1,5 +1,6 @@
 require 'gosu'
 require_relative 'object'
+require_relative 'pontuacao'
 WIDTH = 512
 HEIGHT = 512
 BASE = 0
@@ -21,8 +22,6 @@ class GameWindow < Gosu::Window
     @hieros = Array.new
     @obstaculos = Array.new
     @inimigos = Array.new
-    
- 
 
   end
 
@@ -36,6 +35,11 @@ class GameWindow < Gosu::Window
       roda_pontuacao
     when RANKING
       roda_ranking
+    end
+    def button_down(id)
+      if id == Gosu::KbEscape
+        close
+      end
     end
   end
 
@@ -55,7 +59,7 @@ class GameWindow < Gosu::Window
       @font.draw("Score: #{@player.score}", 10, 10, 0, 1.0, 1.0, Gosu::Color::YELLOW)
     when PONTUACAO
       @font.draw("Score Final: #{@player.score}", 100, 200, 0, 1.0, 1.0, Gosu::Color::YELLOW)
-      @font.draw("Digite seu nome para o ranking", 100, 250, 0, 1.0, 1.0, Gosu::Color::YELLOW)
+      @font.draw("Digite seu nome para o ranking:", 100, 250, 0, 1.0, 1.0, Gosu::Color::YELLOW)
       @font.draw("#{@text}", 100, 300, 0, 1.0, 1.0, Gosu::Color::YELLOW)
     when RANKING
       
@@ -63,16 +67,11 @@ class GameWindow < Gosu::Window
 
   end
 
-  def button_down(id)
-    if id == Gosu::KbEscape
-      close
-    end
-  end
-
   def roda_jogo
     if @inicializou == false
       @player.warp(130, 300)
       @player.score = 0
+      @player.height = 0
       @hieros = Array.new
       @obstaculos = Array.new
       @inimigos = Array.new
@@ -117,6 +116,7 @@ class GameWindow < Gosu::Window
         @inicializou = false
       end
     }
+
   end
 
   def roda_menu
@@ -128,10 +128,17 @@ class GameWindow < Gosu::Window
 
   def roda_pontuacao
     if @inicializou == false
+
       self.text_input= Gosu::TextInput.new #Caixa de input é criada aqui por que ela trava os comandos se tiver ativa na hora do jogo
       @inicializou = true
     end
     @text = text_input.text
+    if Gosu.button_down? Gosu::KB_RETURN || KB_ENTER
+      inserir = Pontuacao.new
+      inserir.SalvaScore("ranking.txt", @player.score, text_input.text)
+      self.text_input= nil
+      @state = MENU
+    end    
   end
 
   def roda_ranking

@@ -55,7 +55,7 @@ class Pontuacao
 
 end
 
-inserir = Pontuacao.new
+#inserir = Pontuacao.new
 # Os parametros esperados sao o nome do arquivo (string), a pontuacao (int), e o nome do player (string)
 #inserir.SalvaScore("ranking.txt", 125, "CCC")
 #inserir.DezPrimeiros("ranking.txt")
