@@ -1,17 +1,20 @@
-# Eixo Z do jogo.
-TOP_LEVEL = 1
+
+TOP_LEVEL = 1 # eixo Z do jogo
+
 JANELA_WIDTH = 512
 JANELA_HEIGHT = 512
-# Guarda e manipula imagens.
+
 module Sprite
+  attr_accessor
+
   def initialize(str)
     @image = Gosu::Image.new(str)
     @x = @y = @vel_x = @vel_y = @height = 0.0
     @angle = 0.0
+    self.define_altura
   end
 end
 
-# Guarda posicao x e y da entidade.
 module Box
   def warp(x, y)
     @x = x
@@ -19,57 +22,55 @@ module Box
   end
 end
 
-# Metodos comuns as entidades do jogo.
 module GameObject
-  attr_accessor :x, :y, :vel_x, :vel_y, :angle
+  attr_accessor :x, :y, :vel_x, :vel_y, :angle, :height
 
-  # Desenha a imagem associada a si proprio.
-  def draw
-    @image.draw_rot(@x, @y, TOP_LEVEL, @angle)
-  end
+  public
 
-  # Detecta colisao.
-  def notity_collision(obj)
-    if Gosu.distance(@x, @y, obj.x, obj.y) < 10
-      true
-    else
-      false
+    def draw
+      @image.draw_rot(@x, @y, TOP_LEVEL, @angle)
     end
-  end
+
+    def notityCollision(obj)
+      if Gosu.distance(@x, @y, obj.x, obj.y) < 10
+        return true
+      else
+        return false
+      end
+    end
 end
-# Integra as tres classes Sprite, Box e GameObject.
-class BoxSpriteGameObject
+
+class Box_Sprite_GameObject
   include Sprite
   include Box
   include GameObject
 end
-# Classe Falcon herdando de BoxSpriteGameObject.
-class Falcon < BoxSpriteGameObject
-  # Flags para evitar mudanca continua de altura.
-  attr_accessor :height, :flag_up, :flag_down, :score
+
+class Falcon < Box_Sprite_GameObject
+  attr_accessor :flag_up, :flag_down, :score #Flags para evitar mudança continua de altura
 
   def update
     if (Gosu.button_down? Gosu::KB_LEFT) || (Gosu::button_down? Gosu::GP_BUTTON_4)
-      # Um pouco maior que o tamanho da janela se nao o falcao desaparece.
-      if @x + 3 >= 20
+      if @x + 3 >= 20 # Um pouco maior que o tamanho da janela, se nao o falcao desaparece
         move_up
       end
     end
+
     if (Gosu.button_down? Gosu::KB_RIGHT) || (Gosu::button_down? Gosu::GP_BUTTON_6)
-      # Um pouco maior que o tamanho da janela se nao o falcao desaparece.
-      if @y + 16 <= JANELA_HEIGHT
+      if @y + 16 <= JANELA_HEIGHT # Um pouco maior que o tamanho da janela, se nao o falcao desaparece
         move_down
       end
     end
+
     if Gosu.button_down? Gosu::KB_DOWN
-      # Um pouco maior que o tamanho da janela se nao o falcao desaparece.
-      if @y + 25 <= JANELA_HEIGHT && @height != -1 && @flag_down == true
+      if @y + 25 <= JANELA_HEIGHT && @height != -1 && @flag_down == true# Um pouco maior que o tamanho da janela, se nao o falcao desaparece
         move_height_down
         @flag_down = false
       end
     else
       @flag_down = true
     end
+
     if Gosu.button_down? Gosu::KB_UP
       if @height != 1 && @flag_up == true
         move_height_up
@@ -80,7 +81,6 @@ class Falcon < BoxSpriteGameObject
     end
   end
 
-  # Metodos que controlam os movimentos do falcao.
   def move_down
     @x += 2.975
     @y += 4.375
@@ -91,8 +91,7 @@ class Falcon < BoxSpriteGameObject
     @y -= 4.375
   end
 
-  # Controle de altura do falcon os valores podem ser mudados.
-  def move_height_down
+  def move_height_down #Controle de altura do falcon os valores podem ser mudados
     @height -= 1
     @y += 21.875
   end
@@ -101,13 +100,16 @@ class Falcon < BoxSpriteGameObject
     @height += 1
     @y -= 21.875
   end
+
+  def define_altura
+    @height = 0
+  end
 end
 
-# Classe Hiero herdando de BoxSpriteGameObject.
-class Hiero < BoxSpriteGameObject
+class Hiero < Box_Sprite_GameObject
+
   def update
-    # Detecta se o hiero chegou na extremidade esquerda ou no fim da janela.
-    if @x >= BASE + 20 && @y <= JANELA_HEIGHT + 15
+    if @x >= BASE + 20 && @y <= JANELA_HEIGHT + 15 # Detecta se o hiero chegou na extremidade esquerda ou no fim da janela
       move
     else
       warp(JANELA_WIDTH, rand(JANELA_HEIGHT - 50))
@@ -117,5 +119,53 @@ class Hiero < BoxSpriteGameObject
   def move
     @x -= 2
     @y += 0.7
+  end
+  def define_altura
+    @height = 1
+  end
+end
+
+class Obstaculo < Box_Sprite_GameObject
+  def update
+    if @x >= BASE + 20 && @y <= JANELA_HEIGHT + 15 # Detecta se o hiero chegou na extremidade esquerda ou no fim da janela
+      move
+    else
+      warp(JANELA_WIDTH, rand(JANELA_HEIGHT - 50))
+    end
+  end
+
+  def move
+    @x -= 2
+    @y += 0.7
+  end
+
+  def define_altura
+    @height = -1
+  end
+end
+
+class Inimigo < Box_Sprite_GameObject
+  def update
+    if @x >= BASE + 20 && @y <= JANELA_HEIGHT + 15 # Detecta se o inimigo chegou na extremidade esquerda ou no fim da janela
+      move
+    else
+      warp(JANELA_WIDTH, rand(JANELA_HEIGHT - 50))
+    end
+  end
+
+  def move
+    @x -= 3
+    @y += 1
+  end
+
+  def define_altura
+    case rand(3)
+    when 0
+      @height = -1
+    when 1
+      @height = 0
+    when 2
+      @height = 1
+    end
   end
 end
