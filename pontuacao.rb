@@ -1,6 +1,6 @@
 module Escrita
   def Substituir(filepath, substituir, &block)
-    content = File.read(filepath).gsub(substituir, &block)
+    content = File.read(filepath).sub(substituir, &block)
     File.open(filepath, 'wb') { |file| file.write(content) }
   end
 
@@ -19,6 +19,7 @@ module Escrita
         achou_menor = true
         break
       end
+      puts "entrou"
     end
 
     # Salva os dados do player em uma string
@@ -59,5 +60,5 @@ end
 
 #inserir = Pontuacao.new
 #Os parametros esperados sao o nome do arquivo (string), a pontuacao (int), e o nome do player (string)
-#inserir.SalvaScore("ranking.txt", 143, "DDC")
+#inserir.SalvaScore("ranking.txt", 148, "AAA")
 #inserir.DezPrimeiros("ranking.txt")
