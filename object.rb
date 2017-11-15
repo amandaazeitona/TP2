@@ -11,6 +11,7 @@ module Sprite
     @image = Gosu::Image.new(str)
     @x = @y = @vel_x = @vel_y = @height = 0.0
     @angle = 0.0
+    self.define_altura
   end
 end
 
@@ -99,6 +100,10 @@ class Falcon < Box_Sprite_GameObject
     @height += 1
     @y -= 21.875
   end
+
+  def define_altura
+    @height = 0
+  end
 end
 
 class Hiero < Box_Sprite_GameObject
@@ -115,7 +120,9 @@ class Hiero < Box_Sprite_GameObject
     @x -= 2
     @y += 0.7
   end
-
+  def define_altura
+    @height = 1
+  end
 end
 
 class Obstaculo < Box_Sprite_GameObject
@@ -131,6 +138,10 @@ class Obstaculo < Box_Sprite_GameObject
     @x -= 2
     @y += 0.7
   end
+
+  def define_altura
+    @height = -1
+  end
 end
 
 class Inimigo < Box_Sprite_GameObject
@@ -145,5 +156,16 @@ class Inimigo < Box_Sprite_GameObject
   def move
     @x -= 3
     @y += 1
+  end
+
+  def define_altura
+    case rand(3)
+    when 0
+      @height = -1
+    when 1
+      @height = 0
+    when 2
+      @height = 1
+    end
   end
 end

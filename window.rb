@@ -103,7 +103,7 @@ class GameWindow < Gosu::Window
       end
     }
    @obstaculos.each { |obstaculo|   
-      if @player.notityCollision(obstaculo) && @player.height == -1
+      if @player.notityCollision(obstaculo) && @player.height == obstaculo.height
         obstaculo.warp(WIDTH, rand(HEIGHT - 50))
         @state = PONTUACAO
         @inicializou = false
