@@ -19,7 +19,6 @@ module Escrita
         achou_menor = true
         break
       end
-      puts "entrou"
     end
 
     # Salva os dados do player em uma string
