@@ -8,6 +8,7 @@ MENU = 0
 JOGO = 1
 RANKING = 2
 PONTUACAO = 3
+PADDING = 20
 
 class GameWindow < Gosu::Window
   def initialize
@@ -16,12 +17,7 @@ class GameWindow < Gosu::Window
     self.caption = 'Desert Falcon'
     @font = Gosu::Font.new(30)
     @state = MENU
-    @inicializou = false
-    @background_image = Gosu::Image.new('spec/images/fundo.png', :tileable => true) # Os componentes do jogo sao inicializados aqui porque o metodo draw da janela eh chamado sempre no final do update oq causa erro na transiçao de modos da janela
-    @player = Falcon.new('spec/images/falcon.png')
-    @hieros = Array.new
-    @obstaculos = Array.new
-    @inimigos = Array.new
+    @inicializou = true
 
   end
 
@@ -45,33 +41,36 @@ class GameWindow < Gosu::Window
 
   def draw
 
-    case @state # Case para desenhar de acordo com o estado da janela
-    when MENU
-      @font.draw("JOGAR(j)", 200, 200, 0, 1.0, 1.0, Gosu::Color::YELLOW)
-      @font.draw("RANKING(r)", 200, 250, 0, 1.0, 1.0, Gosu::Color::YELLOW)
-      @font.draw("SAIR(esc)", 200, 300, 0, 1.0, 1.0, Gosu::Color::YELLOW)
-    when JOGO
-      @background_image.draw(0, 0, 0)
-      @obstaculos.each { |obstaculo| obstaculo.draw}
-      @inimigos.each { |inimigo| inimigo.draw}
-      @player.draw
-      @hieros.each { |hiero| hiero.draw }
-      @font.draw("Score: #{@player.score}", 10, 10, 0, 1.0, 1.0, Gosu::Color::YELLOW)
-    when PONTUACAO
-      @font.draw("Score Final: #{@player.score}", 100, 200, 0, 1.0, 1.0, Gosu::Color::YELLOW)
-      @font.draw("Digite seu nome para o ranking:", 100, 250, 0, 1.0, 1.0, Gosu::Color::YELLOW)
-      @font.draw("#{@text}", 100, 300, 0, 1.0, 1.0, Gosu::Color::YELLOW)
-    when RANKING
-      
+    if @inicializou == true #Usado para nao tentar da draw em objetos nao inicializados
+      case @state # Case para desenhar de acordo com o estado da janela
+      when MENU
+        @font.draw("JOGAR(j)", 200, 200, 0, 1.0, 1.0, Gosu::Color::YELLOW)
+        @font.draw("RANKING(r)", 200, 250, 0, 1.0, 1.0, Gosu::Color::YELLOW)
+        @font.draw("SAIR(esc)", 200, 300, 0, 1.0, 1.0, Gosu::Color::YELLOW)
+      when JOGO
+        @background_image.draw(0, 0, 0)
+        @obstaculos.each { |obstaculo| obstaculo.draw}
+        @inimigos.each { |inimigo| inimigo.draw}
+        @player.draw
+        @hieros.each { |hiero| hiero.draw }
+        @font.draw("Score: #{@player.score}", 10, 10, 0, 1.0, 1.0, Gosu::Color::YELLOW)
+      when PONTUACAO
+        @font.draw("Score Final: #{@player.score}", 100, 200, 0, 1.0, 1.0, Gosu::Color::YELLOW)
+        @font.draw("Digite seu nome para o ranking:", 100, 250, 0, 1.0, 1.0, Gosu::Color::YELLOW)
+        @font.draw("#{text_input.text}", 100, 300, 0, 1.0, 1.0, Gosu::Color::YELLOW)
+      when RANKING
+        @ranking.draw PADDING, PADDING, 0
+      end
     end
 
   end
 
   def roda_jogo
     if @inicializou == false
-      @player.warp(130, 300)
+      @background_image = Gosu::Image.new('spec/images/fundo.png', :tileable => true)
+      @player = Falcon.new('spec/images/falcon.png')
       @player.score = 0
-      @player.height = 0
+      @player.warp(130, 300)
       @hieros = Array.new
       @obstaculos = Array.new
       @inimigos = Array.new
@@ -120,29 +119,48 @@ class GameWindow < Gosu::Window
   end
 
   def roda_menu
+    @inicializou = true
     if Gosu.button_down? Gosu::KB_J
       @state = JOGO
+      @inicializou = false
+    end
+    if Gosu.button_down? Gosu::KB_R
+      @state = RANKING
       @inicializou = false
     end
   end
 
   def roda_pontuacao
     if @inicializou == false
-
       self.text_input= Gosu::TextInput.new #Caixa de input é criada aqui por que ela trava os comandos se tiver ativa na hora do jogo
       @inicializou = true
     end
-    @text = text_input.text
-    if Gosu.button_down? Gosu::KB_RETURN || KB_ENTER
+    if text_input.text.size > 3 #Limita o tamnho da string
+      text_input.text = text_input.text.slice(0..2)
+    end
+    text_input.text = text_input.text.upcase
+    if (Gosu.button_down? Gosu::KB_RETURN) || (Gosu.button_down? Gosu::KB_ENTER)
+      if text_input.text.size == 0
+        text_input.text = "AAA"
+      end
       inserir = Pontuacao.new
       inserir.SalvaScore("ranking.txt", @player.score, text_input.text)
       self.text_input= nil
       @state = MENU
+      @inicializou = false
     end    
   end
 
   def roda_ranking
-    
+    if @inicializou == false
+      leitura = Pontuacao.new
+      @ranking = Gosu::Image.from_text leitura.DezPrimeiros("ranking.txt") , 20, :width => WIDTH - 2 * PADDING  #Usa a biblioteca GOSU para transformar um texto em imagem
+      @inicializou = true
+    end
+    if (Gosu.button_down? Gosu::KB_RETURN) || (Gosu.button_down? Gosu::KB_ENTER)
+      @state = MENU
+      @inicializou = false
+    end
   end
 end
 

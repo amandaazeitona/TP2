@@ -37,14 +37,16 @@ module Leitura
   def DezPrimeiros(arquivo)
     i=1
     filepath = File.open(arquivo,"r+")
-    puts "POS - Pontuação Nome"
+    ranking = "Aperte ENTER para voltar\n"
+    ranking += "POS - Pontuação Nome\n"
     filepath.each do |line|
       if i == 11
         break
       end
-      puts "#{i} - #{line}"
+      ranking+= "#{i} - #{line}"
       i=i+1
     end
+    return ranking
   end
 end
 
@@ -56,6 +58,6 @@ class Pontuacao
 end
 
 #inserir = Pontuacao.new
-# Os parametros esperados sao o nome do arquivo (string), a pontuacao (int), e o nome do player (string)
-#inserir.SalvaScore("ranking.txt", 125, "CCC")
+#Os parametros esperados sao o nome do arquivo (string), a pontuacao (int), e o nome do player (string)
+#inserir.SalvaScore("ranking.txt", 143, "DDC")
 #inserir.DezPrimeiros("ranking.txt")
