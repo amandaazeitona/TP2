@@ -9,7 +9,7 @@ JOGO = 1
 RANKING = 2
 PONTUACAO = 3
 PADDING = 20
-# Classe GameWindow herda de Gosu::Window
+# Classe GameWindow herda de Gosu::Window.
 class GameWindow < Gosu::Window
   # Inicializa
   def initialize
@@ -21,7 +21,7 @@ class GameWindow < Gosu::Window
   end
 
   def update
-    # Case para rodar a logica de acordo com o estado da janela
+    # Case para rodar a logica de acordo com o estado da janela.
     case @state
     when MENU
       roda_menu
@@ -32,7 +32,7 @@ class GameWindow < Gosu::Window
     when RANKING
       roda_ranking
     end
-    # Define que a janela do jogo eh fechada com a tecla ESC
+    # Define que a janela do jogo eh fechada com a tecla ESC.
     def button_down(id)
       if id == Gosu::KbEscape
         close
@@ -41,9 +41,9 @@ class GameWindow < Gosu::Window
   end
 
   def draw
-    # Usado para nao tentar da draw em objetos nao inicializados
+    # Usado para nao tentar da draw em objetos nao inicializados.
     if @inicializou == true
-      # Case para desenhar de acordo com o estado da janela
+      # Case para desenhar de acordo com o estado da janela.
       case @state
       when MENU
         @font.draw('JOGAR(j)', 200, 200, 0, 1.0, 1.0, Gosu::Color::YELLOW)
@@ -118,7 +118,7 @@ class GameWindow < Gosu::Window
     }
   end
 
-  # Define o menu
+  # Define o menu.
   def roda_menu
     @inicializou = true
     if Gosu.button_down? Gosu::KB_J
@@ -133,11 +133,11 @@ class GameWindow < Gosu::Window
 
   def roda_pontuacao
     if @inicializou == false
-      # Caixa de input eh criada aqui por que ela trava os comandos se tiver ativa na hora do jogo
+      # Caixa de input eh criada aqui por que ela trava os comandos se tiver ativa na hora do jogo.
       self.text_input = Gosu::TextInput.new
       @inicializou = true
     end
-    # Limita o tamnho da string
+    # Limita o tamnho da string.
     if text_input.text.size > 3
       text_input.text = text_input.text.slice(0..2)
     end
@@ -157,7 +157,7 @@ class GameWindow < Gosu::Window
   def roda_ranking
     if @inicializou == false
       leitura = Pontuacao.new
-      # Usa a biblioteca GOSU para transformar um texto em imagem
+      # Usa a biblioteca GOSU para transformar um texto em imagem.
       @ranking = Gosu::Image.from_text leitura.dez_primeiros('ranking.txt'), 20, width: WIDTH - 2 * PADDING
       @inicializou = true
     end
@@ -167,6 +167,6 @@ class GameWindow < Gosu::Window
     end
   end
 end
-# Abre a janela do jogo
+# Abre a janela do jogo.
 window = GameWindow.new
 window.show

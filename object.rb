@@ -1,8 +1,8 @@
-# Eixo Z do jogo
+# Eixo Z do jogo.
 TOP_LEVEL = 1
 JANELA_WIDTH = 512
 JANELA_HEIGHT = 512
-# Modulo que define as sprites do jogo
+# Modulo que define as sprites do jogo.
 module Sprite
   attr_accessor
   # Inicializa
@@ -13,14 +13,14 @@ module Sprite
     self.define_altura
   end
 end
-# Modulo das coordenadas x e y
+# Modulo das coordenadas x e y.
 module Box
   def warp(x, y)
     @x = x
     @y = y
   end
 end
-# Modulo dos objetos do jogo
+# Modulo dos objetos do jogo.
 module GameObject
   attr_accessor :x, :y, :vel_x, :vel_y, :angle, :height
   # Desenha a imagem
@@ -37,7 +37,7 @@ module GameObject
     end
   end
 end
-# Classe que compacta os tres modulos
+# Classe que compacta os tres modulos.
 class BoxSpriteGameObject
   include Sprite
   include Box
@@ -45,25 +45,25 @@ class BoxSpriteGameObject
 end
 # Classe que define o falcao
 class Falcon < BoxSpriteGameObject
-  # Flags para evitar mudanca continua de altura
+  # Flags para evitar mudanca continua de altura.
   attr_accessor :flag_up, :flag_down, :score
   def update
     if (Gosu.button_down? Gosu::KB_LEFT) || (Gosu::button_down? Gosu::GP_BUTTON_4)
-      # Um pouco maior que o tamanho da janela, se nao o falcao desaparece
+      # Um pouco maior que o tamanho da janela, se nao o falcao desaparece.
       if @x + 3 >= 20
         move_up
       end
     end
 
     if (Gosu.button_down? Gosu::KB_RIGHT) || (Gosu::button_down? Gosu::GP_BUTTON_6)
-      # Um pouco maior que o tamanho da janela, se nao o falcao desaparece
+      # Um pouco maior que o tamanho da janela, se nao o falcao desaparece.
       if @y + 16 <= JANELA_HEIGHT
         move_down
       end
     end
 
     if Gosu.button_down? Gosu::KB_DOWN
-      # Um pouco maior que o tamanho da janela, se nao o falcao desaparece
+      # Um pouco maior que o tamanho da janela, se nao o falcao desaparece.
       if @y + 25 <= JANELA_HEIGHT && @height != -1 && @flag_down == true
         move_height_down
         @flag_down = false
@@ -93,7 +93,7 @@ class Falcon < BoxSpriteGameObject
   end
 
   def move_height_down
-    # Controle de altura do falcon os valores podem ser mudados
+    # Controle de altura do falcon os valores podem ser mudados.
     @height -= 1
     @y += 21.875
   end
@@ -107,10 +107,10 @@ class Falcon < BoxSpriteGameObject
     @height = 0
   end
 end
-# Classe que define os hieros
+# Classe que define os hieros.
 class Hiero < BoxSpriteGameObject
   def update
-    # Detecta se o hiero chegou na extremidade esquerda ou no fim da janela
+    # Detecta se o hiero chegou na extremidade esquerda ou no fim da janela.
     if @x >= BASE + 20 && @y <= JANELA_HEIGHT + 15
       move
     else
@@ -127,11 +127,11 @@ class Hiero < BoxSpriteGameObject
     @height = 1
   end
 end
-# Classe que define os obstaculos
+# Classe que define os obstaculos.
 class Obstaculo < BoxSpriteGameObject
   def update
     if @x >= BASE + 20 && @y <= JANELA_HEIGHT + 15
-      # Detecta se o hiero chegou na extremidade esquerda ou no fim da janela
+      # Detecta se o hiero chegou na extremidade esquerda ou no fim da janela.
       move
     else
       warp(JANELA_WIDTH, rand(JANELA_HEIGHT - 50))
@@ -147,11 +147,11 @@ class Obstaculo < BoxSpriteGameObject
     @height = -1
   end
 end
-# Classe que define os inimigos
+# Classe que define os inimigos.
 class Inimigo < BoxSpriteGameObject
   def update
     if @x >= BASE + 20 && @y <= JANELA_HEIGHT + 15
-      # Detecta se o inimigo chegou na extremidade esquerda ou no fim da janela
+      # Detecta se o inimigo chegou na extremidade esquerda ou no fim da janela.
       move
     else
       warp(JANELA_WIDTH, rand(JANELA_HEIGHT - 50))

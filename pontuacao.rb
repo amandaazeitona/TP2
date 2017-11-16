@@ -1,4 +1,4 @@
-# Modulo que escreve a pontuacao
+# Modulo que escreve a pontuacao.
 module Escrita
   def substituir(filepath, substituir, &block)
     content = File.read(filepath).sub(substituir, &block)
@@ -10,7 +10,7 @@ module Escrita
     s_subs = ''
     achou_menor = false
 
-    # Busca a posicao no arquivo, se encontrar uma menor que a atual, armazena em s_subs
+    # Busca a posicao no arquivo, se encontrar uma menor que a atual, armazena em s_subs.
     File.open(filepath).each do |line|
       number = line[/\d+/].to_i
       name = line[/\D+/]
@@ -21,7 +21,7 @@ module Escrita
       end
     end
 
-    # Salva os dados do player em uma string
+    # Salva os dados do player em uma string.
     meus_dados = "#{pontuacao} #{nome}\n"
 
     # Se houver um menor, salva na posicao adequada, senao salva no fim do arquivo.
@@ -32,7 +32,7 @@ module Escrita
     end
   end
 end
-# Modulo que le o arquivo texto com o ranking
+# Modulo que le o arquivo texto com o ranking.
 module Leitura
   def dez_primeiros(arquivo)
     i = 1
@@ -49,7 +49,7 @@ module Leitura
     ranking
   end
 end
-# Classe que engloba escrita e leitura
+# Classe que engloba escrita e leitura.
 class Pontuacao
   include Escrita
   include Leitura
