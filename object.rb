@@ -120,8 +120,16 @@ class Hiero < Box_Sprite_GameObject
     @x -= 2
     @y += 0.7
   end
+  
   def define_altura
-    @height = 1
+    case rand(3)
+    when 0
+      @height = -1
+    when 1
+      @height = 0
+    when 2
+      @height = 1
+    end
   end
 end
 
