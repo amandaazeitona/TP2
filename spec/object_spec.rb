@@ -20,6 +20,14 @@ describe Hiero do
     expect(hiero.x).not_to eql eixo_x
     expect(hiero.y).not_to eql eixo_y
   end
+
+  it 'inicilizacao altura' do 
+    hiero = Hiero.new('spec/images/hiero.png')
+    expect(hiero.height).to be >= -1
+    expect(hiero.height).to be <= 1  
+  end 
+
+
 end
 
 describe Falcon do
@@ -78,13 +86,21 @@ describe Falcon do
     expect(falcon.height).not_to eql eixo_height
     expect(falcon.y).not_to eql eixo_y
   end
+
+  it 'inicilizacao altura' do 
+    falcon = Falcon.new('spec/images/falcon.png')
+    expect(falcon.height).to eql 0
+  end 
+
+
 end
 
 describe GameObject do
+
   it 'it happened' do
     falcon = Falcon.new('spec/images/falcon.png') # Valores inicados iguais a zero.
     hiero = Hiero.new('spec/images/hiero.png') # Valores iniciados iguais a zero.
-    expect(falcon.notity_collision(hiero)).to be true
+    expect(falcon.notityCollision(hiero)).to be true
   end
 
   it 'it not happened' do
@@ -93,6 +109,83 @@ describe GameObject do
     falcon.move_up  # Cada move_up equivale a x -= 2.975 y -= 4.375.
     falcon.move_up  # Mover o falcon para ficar com distancia > 10.
     falcon.move_up
-    expect(falcon.notity_collision(hiero)).to be false
+    expect(falcon.notityCollision(hiero)).to be false
   end
+
+  it 'move out window right' do
+    falcon = Falcon.new('spec/images/falcon.png')
+    falcon.y = 511
+    eixo_x = falcon.x
+    eixo_y = falcon.y
+    Gosu.button_down? Gosu::KB_RIGHT = 1
+    expect(falcon.x).to eql eixo_x
+    expect(falcon.y).to eql eixo_y
+  end
+
+  it 'move out window left' do
+    falcon = Falcon.new('spec/images/falcon.png')
+    falcon.x = 18
+    eixo_x = falcon.x
+    eixo_y = falcon.y
+    Gosu.button_down? Gosu::KB_LEFT = 1
+    expect(falcon.x).to eql eixo_x
+    expect(falcon.y).to eql eixo_y
+  end
+
+  it 'move out window down' do
+    falcon = Falcon.new('spec/images/falcon.png')
+    falcon.x = 488
+    eixo_x = falcon.x
+    eixo_y = falcon.y
+    Gosu.button_down? Gosu::KB_DOWN = 1
+    expect(falcon.x).to eql eixo_x
+    expect(falcon.y).to eql eixo_y
+  end
+
+end
+
+describe Obstaculo do 
+  
+  it 'return a new Obstaculo' do
+    obstaculo = Obstaculo.new('spec/images/obs.png')
+    expect(obstaculo).to be_a Obstaculo
+  end
+
+  it 'move' do
+    obstaculo =  Obstaculo.new('spec/images/obs.png')
+    eixo_x = obstaculo.x
+    eixo_y = obstaculo.y
+    obstaculo.move
+    expect(obstaculo.x).not_to eql eixo_x
+    expect(obstaculo.y).not_to eql eixo_y
+  end
+
+  it 'inicilizacao altura' do 
+    obstaculo = Obstaculo.new('spec/images/obs.png')
+    expect(obstaculo.height).to eql -1
+  end 
+
+end
+
+describe Inimigo do 
+
+  it 'return a new Obstaculo' do
+    inimigo = Inimigo.new('spec/images/obs.png')
+    expect(inimigo).to be_a Inimigo
+  end
+
+  it 'move' do
+    inimigo =  Inimigo.new('spec/images/obs.png')
+    eixo_x = inimigo.x
+    eixo_y = inimigo.y
+    inimigo.move
+    expect(inimigo.x).not_to eql eixo_x
+    expect(inimigo.y).not_to eql eixo_y
+  end
+
+  it 'inicilizacao altura' do 
+    inimigo = Inimigo.new('spec/images/obs.png')
+    expect(inimigo.height).to eql -1
+  end 
+
 end
