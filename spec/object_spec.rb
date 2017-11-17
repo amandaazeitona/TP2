@@ -26,8 +26,6 @@ describe Hiero do
     expect(hiero.height).to be >= -1
     expect(hiero.height).to be <= 1  
   end 
-
-
 end
 
 describe Falcon do
@@ -184,8 +182,9 @@ describe Inimigo do
   end
 
   it 'inicilizacao altura' do 
-    inimigo = Inimigo.new('spec/images/obs.png')
-    expect(inimigo.height).to eql -1
+    inimigo = Inimigo.new('spec/images/inimigo.jpeg')
+    expect(inimigo.height).to be >= -1
+    expect(inimigo.height).to be <= 1 
   end 
 
 end
