@@ -103,7 +103,7 @@ class Falcon < BoxSpriteGameObject
     @y -= 21.875
   end
 
-  private def define_altura
+   def define_altura
     @height = 0
   end
 end
@@ -123,7 +123,7 @@ class Hiero < BoxSpriteGameObject
     @y += 0.7
   end
 
-  private def define_altura
+  def define_altura
     @height = 1
   end
 end
@@ -143,7 +143,7 @@ class Obstaculo < BoxSpriteGameObject
     @y += 0.7
   end
 
-  private def define_altura
+  def define_altura
     @height = -1
   end
 end
@@ -163,7 +163,7 @@ class Inimigo < BoxSpriteGameObject
     @y += 1
   end
 
-  private def define_altura
+  def define_altura
     case rand(3)
     when 0
       @height = -1
