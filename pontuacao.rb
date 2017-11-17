@@ -1,6 +1,6 @@
 # Modulo que escreve a pontuacao.
 module Escrita
-  def substituir(filepath, substituir, &block)
+  private def substituir(filepath, substituir, &block)
     content = File.read(filepath).sub(substituir, &block)
     File.open(filepath, 'wb') { |file| file.write(content) }
   end

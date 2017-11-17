@@ -66,7 +66,7 @@ class GameWindow < Gosu::Window
     end
   end
 
-  def roda_jogo
+  private def roda_jogo
     if @inicializou == false
       @background_image = Gosu::Image.new('spec/images/fundo.png', tileable: true)
       @player = Falcon.new('spec/images/falcon.png')
@@ -119,7 +119,7 @@ class GameWindow < Gosu::Window
   end
 
   # Define o menu.
-  def roda_menu
+  private def roda_menu
     @inicializou = true
     if Gosu.button_down? Gosu::KB_J
       @state = JOGO
@@ -131,7 +131,7 @@ class GameWindow < Gosu::Window
     end
   end
 
-  def roda_pontuacao
+  private def roda_pontuacao
     if @inicializou == false
       # Caixa de input eh criada aqui por que ela trava os comandos se tiver ativa na hora do jogo.
       self.text_input = Gosu::TextInput.new
@@ -154,7 +154,7 @@ class GameWindow < Gosu::Window
     end
   end
 
-  def roda_ranking
+  private def roda_ranking
     if @inicializou == false
       leitura = Pontuacao.new
       # Usa a biblioteca GOSU para transformar um texto em imagem.
