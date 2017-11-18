@@ -11,6 +11,8 @@ PONTUACAO = 3
 PADDING = 20
 
 class GameWindow < Gosu::Window
+  attr_accessor :entrou_ranking , :entrou_pontuacao
+
   def initialize
     super WIDTH, HEIGHT
 
@@ -19,10 +21,12 @@ class GameWindow < Gosu::Window
     @state = MENU
     @inicializou = true
 
+
   end
 
   def update
-    case @state # Case para rodar a logica de acordo com o estado da janela
+      
+     case @state # Case para rodar a logica de acordo com o estado da janela
     when MENU
       roda_menu
     when JOGO
@@ -131,6 +135,7 @@ class GameWindow < Gosu::Window
   end
 
   def roda_pontuacao
+    @entrou_pontuacao =1
     if @inicializou == false
       self.text_input= Gosu::TextInput.new #Caixa de input é criada aqui por que ela trava os comandos se tiver ativa na hora do jogo
       @inicializou = true
@@ -152,6 +157,7 @@ class GameWindow < Gosu::Window
   end
 
   def roda_ranking
+    @entrou_ranking = 1
     if @inicializou == false
       leitura = Pontuacao.new
       @ranking = Gosu::Image.from_text leitura.DezPrimeiros("ranking.txt") , 20, :width => WIDTH - 2 * PADDING  #Usa a biblioteca GOSU para transformar um texto em imagem
