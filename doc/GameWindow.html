@@ -116,6 +116,38 @@
 
 
 
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#entrou_ranking-instance_method" title="#entrou_ranking (instance method)">#<strong>entrou_ranking</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute entrou_ranking.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
 
 
 
@@ -202,74 +234,6 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#roda_jogo-instance_method" title="#roda_jogo (instance method)">#<strong>roda_jogo</strong>  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#roda_menu-instance_method" title="#roda_menu (instance method)">#<strong>roda_menu</strong>  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Define o menu.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#roda_pontuacao-instance_method" title="#roda_pontuacao (instance method)">#<strong>roda_pontuacao</strong>  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
       <a href="#roda_ranking-instance_method" title="#roda_ranking (instance method)">#<strong>roda_ranking</strong>  &#x21d2; Object </a>
     
 
@@ -344,16 +308,16 @@
       <pre class="lines">
 
 
-15
 16
 17
 18
 19
 20
-21</pre>
+21
+22</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'window.rb', line 15</span>
+      <pre class="code"><span class="info file"># File 'window.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
   <span class='kw'>super</span> <span class='const'><span class='object_link'><a href="top-level-namespace.html#WIDTH-constant" title="WIDTH (constant)">WIDTH</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="top-level-namespace.html#HEIGHT-constant" title="HEIGHT (constant)">HEIGHT</a></span></span>
@@ -368,6 +332,54 @@
 </div>
   
 </div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="entrou_ranking=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="entrou_ranking-instance_method">
+  
+    #<strong>entrou_ranking</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute entrou_ranking</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+14
+15
+16</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'window.rb', line 14</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_entrou_ranking'>entrou_ranking</span>
+  <span class='ivar'>@entrou_ranking</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 
   <div id="instance_method_details" class="method_details_list">
@@ -400,14 +412,14 @@
       <pre class="lines">
 
 
-36
 37
 38
 39
-40</pre>
+40
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'window.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'window.rb', line 37</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_button_down'>button_down</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_id'>id</span> <span class='op'>==</span> <span class='const'>Gosu</span><span class='op'>::</span><span class='const'>KbEscape</span>
@@ -434,7 +446,6 @@
       <pre class="lines">
 
 
-43
 44
 45
 46
@@ -458,10 +469,11 @@
 64
 65
 66
-67</pre>
+67
+68</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'window.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'window.rb', line 44</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_draw'>draw</span>
   <span class='comment'># Usado para nao tentar da draw em objetos nao inicializados.
@@ -494,257 +506,6 @@
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="roda_jogo-instance_method">
-  
-    #<strong>roda_jogo</strong>  &#x21d2; <tt>Object</tt> 
-  
-
-  
-
-  
-</h3><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115
-116
-117
-118
-119</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'window.rb', line 69</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_roda_jogo'>roda_jogo</span>
-  <span class='kw'>if</span> <span class='ivar'>@inicializou</span> <span class='op'>==</span> <span class='kw'>false</span>
-    <span class='ivar'>@background_image</span> <span class='op'>=</span> <span class='const'>Gosu</span><span class='op'>::</span><span class='const'>Image</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>spec/images/fundo.png</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>tileable:</span> <span class='kw'>true</span><span class='rparen'>)</span>
-    <span class='ivar'>@player</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Falcon.html" title="Falcon (class)">Falcon</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Sprite.html#initialize-instance_method" title="Sprite#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>spec/images/falcon.png</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-    <span class='ivar'>@player</span><span class='period'>.</span><span class='id identifier rubyid_score'>score</span> <span class='op'>=</span> <span class='int'>0</span>
-    <span class='ivar'>@player</span><span class='period'>.</span><span class='id identifier rubyid_warp'>warp</span><span class='lparen'>(</span><span class='int'>130</span><span class='comma'>,</span> <span class='int'>300</span><span class='rparen'>)</span>
-    <span class='ivar'>@hieros</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
-    <span class='ivar'>@obstaculos</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
-    <span class='ivar'>@inimigos</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
-    <span class='ivar'>@inicializou</span> <span class='op'>=</span> <span class='kw'>true</span>
-  <span class='kw'>end</span>
-
-  <span class='ivar'>@player</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span>
-  <span class='ivar'>@hieros</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_hiero'>hiero</span><span class='op'>|</span> <span class='id identifier rubyid_hiero'>hiero</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span> <span class='rbrace'>}</span>
-  <span class='ivar'>@obstaculos</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_obstaculo'>obstaculo</span><span class='op'>|</span> <span class='id identifier rubyid_obstaculo'>obstaculo</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span> <span class='rbrace'>}</span>
-  <span class='ivar'>@inimigos</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_inimigo'>inimigo</span><span class='op'>|</span> <span class='id identifier rubyid_inimigo'>inimigo</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span> <span class='rbrace'>}</span>
-
-  <span class='kw'>if</span> <span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='int'>100</span><span class='rparen'>)</span> <span class='op'>&lt;</span> <span class='int'>4</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@obstaculos</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&lt;</span> <span class='int'>3</span>
-    <span class='comment'># Imagem temporaria
-</span>    <span class='ivar'>@obstaculos</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Obstaculo.html" title="Obstaculo (class)">Obstaculo</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Sprite.html#initialize-instance_method" title="Sprite#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>spec/images/obs.png</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
-  <span class='kw'>end</span>
-
-  <span class='kw'>if</span> <span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='int'>100</span><span class='rparen'>)</span> <span class='op'>&lt;</span> <span class='int'>4</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@hieros</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&lt;</span> <span class='int'>3</span>
-    <span class='ivar'>@hieros</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Hiero.html" title="Hiero (class)">Hiero</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Sprite.html#initialize-instance_method" title="Sprite#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>spec/images/hiero.png</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
-  <span class='kw'>end</span>
-
-  <span class='kw'>if</span> <span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='int'>100</span><span class='rparen'>)</span> <span class='op'>&lt;</span> <span class='int'>4</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@inimigos</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&lt;</span> <span class='int'>3</span>
-    <span class='ivar'>@inimigos</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Inimigo.html" title="Inimigo (class)">Inimigo</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Sprite.html#initialize-instance_method" title="Sprite#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>spec/images/inimigo.jpeg</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
-  <span class='kw'>end</span>
-  <span class='comment'># Verificar
-</span>  <span class='ivar'>@hieros</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_hiero'>hiero</span><span class='op'>|</span>
-    <span class='kw'>if</span> <span class='ivar'>@player</span><span class='period'>.</span><span class='id identifier rubyid_notity_collision'>notity_collision</span><span class='lparen'>(</span><span class='id identifier rubyid_hiero'>hiero</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='ivar'>@player</span><span class='period'>.</span><span class='id identifier rubyid_height'>height</span> <span class='op'>==</span> <span class='id identifier rubyid_hiero'>hiero</span><span class='period'>.</span><span class='id identifier rubyid_height'>height</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_hiero'>hiero</span><span class='period'>.</span><span class='id identifier rubyid_warp'>warp</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="top-level-namespace.html#WIDTH-constant" title="WIDTH (constant)">WIDTH</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="top-level-namespace.html#HEIGHT-constant" title="HEIGHT (constant)">HEIGHT</a></span></span> <span class='op'>-</span> <span class='int'>50</span><span class='rparen'>)</span><span class='rparen'>)</span>
-      <span class='ivar'>@player</span><span class='period'>.</span><span class='id identifier rubyid_score'>score</span> <span class='op'>+=</span> <span class='int'>10</span>
-    <span class='kw'>end</span>
-  <span class='rbrace'>}</span>
-  <span class='ivar'>@obstaculos</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_obstaculo'>obstaculo</span><span class='op'>|</span>
-    <span class='kw'>if</span> <span class='ivar'>@player</span><span class='period'>.</span><span class='id identifier rubyid_notity_collision'>notity_collision</span><span class='lparen'>(</span><span class='id identifier rubyid_obstaculo'>obstaculo</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@player</span><span class='period'>.</span><span class='id identifier rubyid_height'>height</span> <span class='op'>==</span> <span class='id identifier rubyid_obstaculo'>obstaculo</span><span class='period'>.</span><span class='id identifier rubyid_height'>height</span>
-      <span class='id identifier rubyid_obstaculo'>obstaculo</span><span class='period'>.</span><span class='id identifier rubyid_warp'>warp</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="top-level-namespace.html#WIDTH-constant" title="WIDTH (constant)">WIDTH</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="top-level-namespace.html#HEIGHT-constant" title="HEIGHT (constant)">HEIGHT</a></span></span> <span class='op'>-</span> <span class='int'>50</span><span class='rparen'>)</span><span class='rparen'>)</span>
-      <span class='ivar'>@state</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="top-level-namespace.html#PONTUACAO-constant" title="PONTUACAO (constant)">PONTUACAO</a></span></span>
-      <span class='ivar'>@inicializou</span> <span class='op'>=</span> <span class='kw'>false</span>
-    <span class='kw'>end</span>
-  <span class='rbrace'>}</span>
-  <span class='ivar'>@inimigos</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_inimigo'>inimigo</span><span class='op'>|</span>
-    <span class='kw'>if</span> <span class='ivar'>@player</span><span class='period'>.</span><span class='id identifier rubyid_notity_collision'>notity_collision</span><span class='lparen'>(</span><span class='id identifier rubyid_inimigo'>inimigo</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='ivar'>@player</span><span class='period'>.</span><span class='id identifier rubyid_height'>height</span> <span class='op'>==</span> <span class='id identifier rubyid_inimigo'>inimigo</span><span class='period'>.</span><span class='id identifier rubyid_height'>height</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_inimigo'>inimigo</span><span class='period'>.</span><span class='id identifier rubyid_warp'>warp</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="top-level-namespace.html#WIDTH-constant" title="WIDTH (constant)">WIDTH</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="top-level-namespace.html#HEIGHT-constant" title="HEIGHT (constant)">HEIGHT</a></span></span> <span class='op'>-</span> <span class='int'>50</span><span class='rparen'>)</span><span class='rparen'>)</span>
-      <span class='ivar'>@state</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="top-level-namespace.html#PONTUACAO-constant" title="PONTUACAO (constant)">PONTUACAO</a></span></span>
-      <span class='ivar'>@inicializou</span> <span class='op'>=</span> <span class='kw'>false</span>
-    <span class='kw'>end</span>
-  <span class='rbrace'>}</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="roda_menu-instance_method">
-  
-    #<strong>roda_menu</strong>  &#x21d2; <tt>Object</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Define o menu.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-122
-123
-124
-125
-126
-127
-128
-129
-130
-131
-132</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'window.rb', line 122</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_roda_menu'>roda_menu</span>
-  <span class='ivar'>@inicializou</span> <span class='op'>=</span> <span class='kw'>true</span>
-  <span class='kw'>if</span> <span class='const'>Gosu</span><span class='period'>.</span><span class='id identifier rubyid_button_down?'>button_down?</span> <span class='const'>Gosu</span><span class='op'>::</span><span class='const'>KB_J</span>
-    <span class='ivar'>@state</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="top-level-namespace.html#JOGO-constant" title="JOGO (constant)">JOGO</a></span></span>
-    <span class='ivar'>@inicializou</span> <span class='op'>=</span> <span class='kw'>false</span>
-  <span class='kw'>end</span>
-  <span class='kw'>if</span> <span class='const'>Gosu</span><span class='period'>.</span><span class='id identifier rubyid_button_down?'>button_down?</span> <span class='const'>Gosu</span><span class='op'>::</span><span class='const'>KB_R</span>
-    <span class='ivar'>@state</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="top-level-namespace.html#RANKING-constant" title="RANKING (constant)">RANKING</a></span></span>
-    <span class='ivar'>@inicializou</span> <span class='op'>=</span> <span class='kw'>false</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="roda_pontuacao-instance_method">
-  
-    #<strong>roda_pontuacao</strong>  &#x21d2; <tt>Object</tt> 
-  
-
-  
-
-  
-</h3><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-134
-135
-136
-137
-138
-139
-140
-141
-142
-143
-144
-145
-146
-147
-148
-149
-150
-151
-152
-153
-154
-155</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'window.rb', line 134</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_roda_pontuacao'>roda_pontuacao</span>
-  <span class='kw'>if</span> <span class='ivar'>@inicializou</span> <span class='op'>==</span> <span class='kw'>false</span>
-    <span class='comment'># Caixa de input eh criada aqui por que ela trava os comandos se tiver ativa na hora do jogo.
-</span>    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_text_input'>text_input</span> <span class='op'>=</span> <span class='const'>Gosu</span><span class='op'>::</span><span class='const'>TextInput</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-    <span class='ivar'>@inicializou</span> <span class='op'>=</span> <span class='kw'>true</span>
-  <span class='kw'>end</span>
-  <span class='comment'># Limita o tamnho da string.
-</span>  <span class='kw'>if</span> <span class='id identifier rubyid_text_input'>text_input</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&gt;</span> <span class='int'>3</span>
-    <span class='id identifier rubyid_text_input'>text_input</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='id identifier rubyid_text_input'>text_input</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span><span class='period'>.</span><span class='id identifier rubyid_slice'>slice</span><span class='lparen'>(</span><span class='int'>0</span><span class='op'>..</span><span class='int'>2</span><span class='rparen'>)</span>
-  <span class='kw'>end</span>
-  <span class='id identifier rubyid_text_input'>text_input</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='id identifier rubyid_text_input'>text_input</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span><span class='period'>.</span><span class='id identifier rubyid_upcase'>upcase</span>
-  <span class='kw'>if</span> <span class='lparen'>(</span><span class='const'>Gosu</span><span class='period'>.</span><span class='id identifier rubyid_button_down?'>button_down?</span> <span class='const'>Gosu</span><span class='op'>::</span><span class='const'>KB_RETURN</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='lparen'>(</span><span class='const'>Gosu</span><span class='period'>.</span><span class='id identifier rubyid_button_down?'>button_down?</span> <span class='const'>Gosu</span><span class='op'>::</span><span class='const'>KB_ENTER</span><span class='rparen'>)</span>
-    <span class='kw'>if</span> <span class='id identifier rubyid_text_input'>text_input</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_zero?'>zero?</span>
-      <span class='id identifier rubyid_text_input'>text_input</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AAA</span><span class='tstring_end'>&#39;</span></span>
-    <span class='kw'>end</span>
-    <span class='id identifier rubyid_inserir'>inserir</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Pontuacao_.html" title="Pontuacao (class)">Pontuacao</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-    <span class='id identifier rubyid_inserir'>inserir</span><span class='period'>.</span><span class='id identifier rubyid_salva_score'>salva_score</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ranking.txt</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='ivar'>@player</span><span class='period'>.</span><span class='id identifier rubyid_score'>score</span><span class='comma'>,</span> <span class='id identifier rubyid_text_input'>text_input</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span>
-    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_text_input'>text_input</span> <span class='op'>=</span> <span class='kw'>nil</span>
-    <span class='ivar'>@state</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="top-level-namespace.html#MENU-constant" title="MENU (constant)">MENU</a></span></span>
-    <span class='ivar'>@inicializou</span> <span class='op'>=</span> <span class='kw'>false</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
   <h3 class="signature " id="roda_ranking-instance_method">
   
     #<strong>roda_ranking</strong>  &#x21d2; <tt>Object</tt> 
@@ -759,7 +520,6 @@
       <pre class="lines">
 
 
-157
 158
 159
 160
@@ -770,14 +530,17 @@
 165
 166
 167
-168</pre>
+168
+169
+170</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'window.rb', line 157</span>
+      <pre class="code"><span class="info file"># File 'window.rb', line 158</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_roda_ranking'>roda_ranking</span>
+  <span class='ivar'>@entrou_ranking</span> <span class='op'>=</span><span class='int'>1</span>
   <span class='kw'>if</span> <span class='ivar'>@inicializou</span> <span class='op'>==</span> <span class='kw'>false</span>
-    <span class='id identifier rubyid_leitura'>leitura</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Pontuacao_.html" title="Pontuacao (class)">Pontuacao</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='id identifier rubyid_leitura'>leitura</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Pontuacao.html" title="Pontuacao (class)">Pontuacao</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
     <span class='comment'># Usa a biblioteca GOSU para transformar um texto em imagem.
 </span>    <span class='ivar'>@ranking</span> <span class='op'>=</span> <span class='const'>Gosu</span><span class='op'>::</span><span class='const'>Image</span><span class='period'>.</span><span class='id identifier rubyid_from_text'>from_text</span> <span class='id identifier rubyid_leitura'>leitura</span><span class='period'>.</span><span class='id identifier rubyid_dez_primeiros'>dez_primeiros</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ranking.txt</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='int'>20</span><span class='comma'>,</span> <span class='label'>width:</span> <span class='const'><span class='object_link'><a href="top-level-namespace.html#WIDTH-constant" title="WIDTH (constant)">WIDTH</a></span></span> <span class='op'>-</span> <span class='int'>2</span> <span class='op'>*</span> <span class='const'><span class='object_link'><a href="top-level-namespace.html#PADDING-constant" title="PADDING (constant)">PADDING</a></span></span>
     <span class='ivar'>@inicializou</span> <span class='op'>=</span> <span class='kw'>true</span>
@@ -807,7 +570,6 @@
       <pre class="lines">
 
 
-23
 24
 25
 26
@@ -825,10 +587,11 @@
 38
 39
 40
-41</pre>
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'window.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'window.rb', line 24</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
   <span class='comment'># Case para rodar a logica de acordo com o estado da janela.
@@ -859,7 +622,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Nov 16 21:22:37 2017 by
+  Generated on Fri Nov 17 23:17:48 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.4.1).
 </div>

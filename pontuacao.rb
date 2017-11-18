@@ -37,7 +37,8 @@ module Leitura
   def dez_primeiros(arquivo)
     i = 1
     filepath = File.open(arquivo, 'r+')
-    ranking = "Aperte ENTER para voltar\n" #Precisa ficar com aspas duplas para poder pular a linha
+    # Precisa ficar com aspas duplas para poder pular a linha.
+    ranking = "Aperte ENTER para voltar\n"
     ranking += "POS - Pontuação Nome\n"
     filepath.each do |line|
       if i == 11
