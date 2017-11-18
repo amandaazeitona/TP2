@@ -11,6 +11,7 @@ PONTUACAO = 3
 PADDING = 20
 # Classe GameWindow herda de Gosu::Window.
 class GameWindow < Gosu::Window
+  attr_accessor :entrou_ranking
   # Inicializa
   def initialize
     super WIDTH, HEIGHT
@@ -154,7 +155,8 @@ class GameWindow < Gosu::Window
     end
   end
 
-  private def roda_ranking
+  def roda_ranking
+    @entrou_ranking =1
     if @inicializou == false
       leitura = Pontuacao.new
       # Usa a biblioteca GOSU para transformar um texto em imagem.
