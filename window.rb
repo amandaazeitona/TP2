@@ -11,8 +11,11 @@ PONTUACAO = 3
 PADDING = 20
 # Classe GameWindow herda de Gosu::Window.
 class GameWindow < Gosu::Window
-  attr_accessor :entrou_ranking
+  attr_accessor    :inicializou, :entrou, :state , :text_input
   # Inicializa
+  # == Retorna:
+  # => o menu inicializado 
+
   def initialize
     super WIDTH, HEIGHT
     self.caption = 'Desert Falcon'
@@ -20,21 +23,28 @@ class GameWindow < Gosu::Window
     @state = MENU
     @inicializou = true
   end
+  # É acessado diversas vezes no jogo e serve para atualizar o estado atual do jogo
+  # == Retorna:
+  # => state=0 => O menu é rodado na tela
+  # => state=1 => o jogo em si é rodado
+  # => state=2 => 
 
   def update
     # Case para rodar a logica de acordo com o estado da janela.
     case @state
     when MENU
+      @entrou =1
       roda_menu
     when JOGO
       roda_jogo
     when PONTUACAO
       roda_pontuacao
     when RANKING
+      @entrou =4
       roda_ranking
     end
     # Define que a janela do jogo eh fechada com a tecla ESC.
-    def button_down(id)
+    def button_down(id) 
       if id == Gosu::KbEscape
         close
       end
@@ -132,7 +142,7 @@ class GameWindow < Gosu::Window
     end
   end
 
-  private def roda_pontuacao
+  def roda_pontuacao
     if @inicializou == false
       # Caixa de input eh criada aqui por que ela trava os comandos se tiver ativa na hora do jogo.
       self.text_input = Gosu::TextInput.new
@@ -140,8 +150,10 @@ class GameWindow < Gosu::Window
     end
     # Limita o tamnho da string.
     if text_input.text.size > 3
+      @entrou=1
       text_input.text = text_input.text.slice(0..2)
     end
+    #coloca a string em upcase
     text_input.text = text_input.text.upcase
     if (Gosu.button_down? Gosu::KB_RETURN) || (Gosu.button_down? Gosu::KB_ENTER)
       if text_input.text.size.zero?
@@ -156,7 +168,7 @@ class GameWindow < Gosu::Window
   end
 
   def roda_ranking
-    @entrou_ranking =1
+    
     if @inicializou == false
       leitura = Pontuacao.new
       # Usa a biblioteca GOSU para transformar um texto em imagem.
