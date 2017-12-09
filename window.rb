@@ -184,3 +184,4 @@ end
 # Abre a janela do jogo.
 window = GameWindow.new
 window.show
+
